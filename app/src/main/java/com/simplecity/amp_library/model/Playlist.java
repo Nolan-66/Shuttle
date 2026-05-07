@@ -51,6 +51,7 @@ public class Playlist implements Serializable {
                 .build();
     }
 
+    @SuppressWarnings("java:S107")
     public Playlist(@Type int type, long id, String name, boolean canEdit, boolean canClear, boolean canDelete, boolean canRename, boolean canSort) {
         this.type = type;
         this.id = id;

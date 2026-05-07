@@ -14,7 +14,7 @@ import com.simplecityapps.recycler_adapter.model.ViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import java.util.List;
 
-public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> extends BaseSelectableViewModel<VH> {
+public abstract class MultiItemView<V extends MultiItemView.ViewHolder, T> extends BaseSelectableViewModel<V> {
 
     @Override
     public int getLayoutResId() {
@@ -92,7 +92,7 @@ public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> exte
     }
 
     @Override
-    public void bindView(VH holder) {
+    public void bindView(V holder) {
         super.bindView(holder);
 
         if (holder.tickImageView != null) {
@@ -108,7 +108,7 @@ public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> exte
     }
 
     @Override
-    public void bindView(VH holder, int position, List payloads) {
+    public void bindView(V holder, int position, List payloads) {
         super.bindView(holder, position, payloads);
 
         if (holder.tickImageView != null) {

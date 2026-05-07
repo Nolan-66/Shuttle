@@ -21,6 +21,8 @@ import android.content.res.Configuration;
 
 public class CarHelper {
 
+    private CarHelper() {}
+
     private static final String TAG = "CarHelper";
 
     public static boolean isCarUiMode(Context c) {

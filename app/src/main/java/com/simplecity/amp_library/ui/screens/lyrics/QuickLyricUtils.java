@@ -18,6 +18,8 @@ import com.simplecity.amp_library.utils.TypefaceManager;
  */
 public class QuickLyricUtils {
 
+    private QuickLyricUtils() {}
+
     private static final String QUICKLYRIC_URL = "https://d3khd.app.goo.gl/jdF1";
 
     public static boolean isQLInstalled(Context context) {

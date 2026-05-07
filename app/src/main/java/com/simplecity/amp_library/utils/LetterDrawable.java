@@ -32,7 +32,7 @@ public class LetterDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        if (mFirstChar == null || mKeyName == null || mFirstChar.length == 0 || mKeyName.length() == 0) {
+        if (mFirstChar == null || mKeyName == null || mFirstChar.length == 0 || mKeyName.isEmpty()) {
             return;
         }
         canvas.drawColor(pickColor(mDisplayName));

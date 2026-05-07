@@ -109,11 +109,17 @@ constructor(
                             }
                         }
                     } catch (ignored: CannotReadException) {
+                        // Intentionally empty - skip unreadable files
                     } catch (ignored: IOException) {
+                        // Intentionally empty
                     } catch (ignored: TagException) {
+                        // Intentionally empty
                     } catch (ignored: ReadOnlyFileException) {
+                        // Intentionally empty
                     } catch (ignored: InvalidAudioFrameException) {
+                        // Intentionally empty
                     } catch (ignored: UnsupportedOperationException) {
+                        // Intentionally empty
                     }
                 }
                 lyrics

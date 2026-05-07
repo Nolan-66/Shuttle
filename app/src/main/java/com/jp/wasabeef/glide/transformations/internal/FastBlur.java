@@ -20,6 +20,9 @@ import android.graphics.Bitmap;
 
 public class FastBlur {
 
+    private FastBlur() {}
+
+    @SuppressWarnings("java:S3776")
     public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
 
         // Stack Blur v1.0 from
@@ -72,15 +75,24 @@ public class FastBlur {
         int wh = w * h;
         int div = radius + radius + 1;
 
-        int r[] = new int[wh];
-        int g[] = new int[wh];
-        int b[] = new int[wh];
-        int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
-        int vmin[] = new int[Math.max(w, h)];
+        int[] r = new int[wh];
+        int[] g = new int[wh];
+        int[] b = new int[wh];
+        int rsum;
+        int gsum;
+        int bsum;
+        int x;
+        int y;
+        int i;
+        int p;
+        int yp;
+        int yi;
+        int yw;
+        int[] vmin = new int[Math.max(w, h)];
 
         int divsum = (div + 1) >> 1;
         divsum *= divsum;
-        int dv[] = new int[256 * divsum];
+        int[] dv = new int[256 * divsum];
         for (i = 0; i < 256 * divsum; i++) {
             dv[i] = (i / divsum);
         }

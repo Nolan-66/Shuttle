@@ -5,6 +5,8 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class LastFmUtils {
 
+    private LastFmUtils() {}
+
     private static final String TAG = "LastFmUtils";
 
     public static String getBestImageUrl(List<LastFmImage> images) {

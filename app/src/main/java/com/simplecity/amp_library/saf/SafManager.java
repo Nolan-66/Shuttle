@@ -216,12 +216,7 @@ public class SafManager {
                         if (index < 0) {
                             Log.w(TAG, "Unexpected external file dir: " + file.getAbsolutePath());
                         } else {
-                            String path = file.getAbsolutePath().substring(0, index);
-                            try {
-                                path = new File(path).getCanonicalPath();
-                            } catch (IOException e) {
-                                // Keep non-canonical path.
-                            }
+                            String path = toCanonicalPath(file.getAbsolutePath().substring(0, index));
                             paths.add(path);
                         }
                     }
@@ -231,6 +226,14 @@ public class SafManager {
             Crashlytics.log("getExtSdCardPaths() failed. " + e.getMessage());
         }
         return paths;
+    }
+
+    private String toCanonicalPath(String path) {
+        try {
+            return new File(path).getCanonicalPath();
+        } catch (IOException e) {
+            return path; // Keep non-canonical path.
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

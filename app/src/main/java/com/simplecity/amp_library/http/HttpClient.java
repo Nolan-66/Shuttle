@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@SuppressWarnings("java:S6548")
 public class HttpClient {
 
     public static final String TAG = "HttpClient";

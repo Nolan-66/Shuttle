@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 public class TagFetcher extends BaseFetcher {
 
-    String TAG = "TagFetcher";
+    private static final String TAG = "TagFetcher";
 
     public TagFetcher(ArtworkProvider artworkProvider) {
         super(artworkProvider);

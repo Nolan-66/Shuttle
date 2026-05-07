@@ -23,6 +23,10 @@ public class MusicServiceConnectionUtils {
 
     }
 
+    private static void setServiceBinder(LocalBinder binder) {
+        serviceBinder = binder;
+    }
+
     public static void bindToService(Lifecycle lifecycle, Context context, AnalyticsManager analyticsManager, ServiceConnection callback, UnsafeConsumer<ServiceToken> tokenCallback) {
         new ResumingServiceManager(lifecycle, analyticsManager).startService(context, new Intent(context, MusicService.class), () -> {
             ServiceBinder binder = new ServiceBinder(callback);
@@ -47,7 +51,7 @@ public class MusicServiceConnectionUtils {
         }
         context.unbindService(binder);
         if (connectionMap.isEmpty()) {
-            serviceBinder = null;
+            setServiceBinder(null);
         }
     }
 
@@ -61,7 +65,7 @@ public class MusicServiceConnectionUtils {
 
         @Override
         public void onServiceConnected(final ComponentName className, final IBinder service) {
-            serviceBinder = (LocalBinder) service;
+            setServiceBinder((LocalBinder) service);
 
             if (callback != null) {
                 callback.onServiceConnected(className, service);
@@ -73,7 +77,7 @@ public class MusicServiceConnectionUtils {
             if (callback != null) {
                 callback.onServiceDisconnected(className);
             }
-            serviceBinder = null;
+            setServiceBinder(null);
         }
     }
 

@@ -239,39 +239,15 @@ public class TaggerDialog extends DialogFragment {
             title = tag.getFirst(FieldKey.TITLE);
             albumName = tag.getFirst(FieldKey.ALBUM);
             artistName = tag.getFirst(FieldKey.ARTIST);
-            try {
-                albumArtistName = tag.getFirst(FieldKey.ALBUM_ARTIST);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
+            albumArtistName = getTagField(tag, FieldKey.ALBUM_ARTIST);
             genre = tag.getFirst(FieldKey.GENRE);
             year = tag.getFirst(FieldKey.YEAR);
             track = tag.getFirst(FieldKey.TRACK);
-            try {
-                trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-            try {
-                disc = tag.getFirst(FieldKey.DISC_NO);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-            try {
-                discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-            try {
-                lyrics = tag.getFirst(FieldKey.LYRICS);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
-            try {
-                comment = tag.getFirst(FieldKey.COMMENT);
-            } catch (UnsupportedOperationException ignored) {
-
-            }
+            trackTotal = getTagField(tag, FieldKey.TRACK_TOTAL);
+            disc = getTagField(tag, FieldKey.DISC_NO);
+            discTotal = getTagField(tag, FieldKey.DISC_TOTAL);
+            lyrics = getTagField(tag, FieldKey.LYRICS);
+            comment = getTagField(tag, FieldKey.COMMENT);
         } catch (IOException | InvalidAudioFrameException | TagException | ReadOnlyFileException | CannotReadException e) {
             Log.e(TAG, "Failed to read tags. " + e.toString());
         }
@@ -311,6 +287,14 @@ public class TaggerDialog extends DialogFragment {
 
         commentEditText.setText(comment);
         commentEditText.setSelection(commentEditText.getText().length());
+    }
+
+    private String getTagField(Tag tag, FieldKey fieldKey) {
+        try {
+            return tag.getFirst(fieldKey);
+        } catch (UnsupportedOperationException ignored) {
+            return null;
+        }
     }
 
     private void saveTags() {

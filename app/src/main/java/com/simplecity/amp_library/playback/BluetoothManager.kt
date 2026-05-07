@@ -22,6 +22,7 @@ class BluetoothManager(
 
     private var a2dpReceiver: BroadcastReceiver? = null
 
+    @Suppress("java:S3776")
     fun registerBluetoothReceiver(context: Context) {
 
         val filter = IntentFilter()

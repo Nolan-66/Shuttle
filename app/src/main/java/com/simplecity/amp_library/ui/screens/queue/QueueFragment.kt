@@ -283,7 +283,7 @@ class QueueFragment :
 
     override fun setData(queueItems: List<QueueItem>, position: Int) {
 
-        PermissionUtils.RequestStoragePermissions {
+        PermissionUtils.requestStoragePermissions {
             if (activity != null && isAdded) {
                 loadDataDisposable?.dispose()
 
@@ -330,12 +330,10 @@ class QueueFragment :
         MultiSheetView.getParentMultiSheetView(view)?.let { multiSheetView ->
 
             // If we're not currently displaying the queue, then scroll to keep the position up to date
-            if (multiSheetView.currentSheet != Sheet.SECOND) {
-                if (!queueViewBinders.isEmpty() && queuePosition < queueViewBinders.size) {
-                    val index = adapter.items.indexOf(queueViewBinders[queuePosition])
-                    if (index >= 0) {
-                        recyclerView.scrollToPosition(index)
-                    }
+            if (multiSheetView.currentSheet != Sheet.SECOND && !queueViewBinders.isEmpty() && queuePosition < queueViewBinders.size) {
+                val index = adapter.items.indexOf(queueViewBinders[queuePosition])
+                if (index >= 0) {
+                    recyclerView.scrollToPosition(index)
                 }
             }
         }

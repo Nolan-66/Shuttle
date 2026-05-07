@@ -97,20 +97,20 @@ public class QueueManager {
         musicServiceCallbacks.notifyChange(InternalIntents.META_CHANGED);
     }
 
-    public void setRepeatMode(@RepeatMode int repeatMode) {
-        this.repeatMode = repeatMode;
+    public void setRepeatMode(@RepeatMode int mode) {
+        this.repeatMode = mode;
         saveQueue(false);
     }
 
-    void setShuffleMode(@ShuffleMode int shuffleMode) {
-        if (this.shuffleMode == shuffleMode && !getCurrentPlaylist().isEmpty()) {
+    void setShuffleMode(@ShuffleMode int mode) {
+        if (this.shuffleMode == mode && !getCurrentPlaylist().isEmpty()) {
             return;
         }
-        if (shuffleMode == ShuffleMode.ON) {
+        if (mode == ShuffleMode.ON) {
             makeShuffleList();
         }
 
-        this.shuffleMode = shuffleMode;
+        this.shuffleMode = mode;
         notifyShuffleChanged();
         notifyQueueChanged();
         saveQueue(false);

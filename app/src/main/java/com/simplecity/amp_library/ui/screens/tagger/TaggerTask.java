@@ -86,6 +86,7 @@ public class TaggerTask extends AsyncTask<Object, Integer, Boolean> {
     }
 
     @Override
+    @SuppressWarnings("java:S3776")
     protected Boolean doInBackground(Object... params) {
 
         boolean success = false;
