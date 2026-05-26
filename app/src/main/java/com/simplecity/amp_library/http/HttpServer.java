@@ -127,7 +127,12 @@ public class HttpServer {
                         long contentLength = end - start + 1;
                         cleanupAudioStream();
                         audioInputStream = new FileInputStream(file);
-                        audioInputStream.skip(start);
+                        long remaining = start;
+                        while (remaining > 0) {
+                            long skipped = audioInputStream.skip(remaining);
+                            if (skipped <= 0) break;
+                            remaining -= skipped;
+                        }
                         Response response = newFixedLengthResponse(Response.Status.PARTIAL_CONTENT, getMimeType(audioFileToServe), audioInputStream, contentLength);
                         response.addHeader("Content-Length", contentLength + "");
                         response.addHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLength);

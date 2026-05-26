@@ -14,6 +14,7 @@ import com.simplecityapps.recycler_adapter.model.ViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import java.util.List;
 
+@SuppressWarnings("java:S2326") // T is used by subclasses (AlbumArtistView, AlbumView, SuggestedSongView)
 public abstract class MultiItemView<V extends MultiItemView.ViewHolder, T> extends BaseSelectableViewModel<V> {
 
     @Override
