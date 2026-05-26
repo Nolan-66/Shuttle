@@ -22,6 +22,7 @@ public class GlidePalette<M, T> extends BitmapPalette implements RequestListener
         return glidePalette;
     }
 
+    @Override
     public GlidePalette use(@Profile int paletteProfile) {
         super.use(paletteProfile);
         return this;

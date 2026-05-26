@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -43,7 +44,7 @@ public class QueueManager {
         int LAST = 1;
     }
 
-    private final char hexDigits[] = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    private final char[] hexDigits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
     @NonNull
     List<QueueItem> playlist = new ArrayList<>();
@@ -490,13 +491,13 @@ public class QueueManager {
      * Converts a string representation of a playlist from SharedPrefs into a list of songs.
      */
     private List<QueueItem> deserializePlaylist(String listString, List<QueueItem> queueItems) {
-        List<Long> ids = new ArrayList<>();
+        Map<Long, Integer> idToIndex = new HashMap<>();
         int n = 0;
         int shift = 0;
         for (int i = 0; i < listString.length(); i++) {
             char c = listString.charAt(i);
             if (c == ';') {
-                ids.add((long) n);
+                idToIndex.put((long) n, idToIndex.size());
                 n = 0;
                 shift = 0;
             } else {
@@ -516,8 +517,8 @@ public class QueueManager {
         Map<Integer, Song> map = new TreeMap<>();
 
         Stream.of(queueItems).map(QueueItem::getSong).forEach(song -> {
-            int index = ids.indexOf(song.id);
-            if (index != -1) {
+            Integer index = idToIndex.get(song.id);
+            if (index != null) {
                 map.put(index, song);
             }
         });

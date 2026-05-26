@@ -221,6 +221,7 @@ public class MediaButtonIntentReceiver extends DaggerBroadcastReceiver {
     private static class MediaButtonMessageHander extends Handler {
 
         @Override
+        @SuppressWarnings("java:S2696")
         public void handleMessage(Message msg) {
 
             switch (msg.what) {
