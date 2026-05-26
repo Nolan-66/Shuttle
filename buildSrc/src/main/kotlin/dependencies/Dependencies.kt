@@ -13,6 +13,7 @@ object Dependencies {
         const val fastScroll = "1.0.20"
         const val glide = "3.8.0"
         const val glideOkhttp = "1.4.0@aar"
+        @Suppress("kotlin:S1313") // Version number, not an IP address
         const val materialDialogs = "0.9.6.0"
         const val permiso = "0.3.0"
         const val streams = "1.2.1"
